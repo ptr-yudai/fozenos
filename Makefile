@@ -1,6 +1,6 @@
-OBJECTS = src/boot/boot.o src/main.o
+OBJECTS = lib/stdlib.o src/boot/boot.o src/main.o src/kernel/hal.o src/kernel/pic.o src/kernel/idt.o src/kernel/memory.o src/kernel/exception.o src/kernel/video.o
 CC = gcc
-CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -I inc/ \
          -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
 LDFLAGS = -T src/link.ld -melf_i386
 AS = nasm
@@ -17,7 +17,7 @@ debug:
 # iso image
 fozenos.iso: kernel.elf src/iso/boot/grub/grub.cfg
 	cp kernel.elf src/iso/boot/kernel.elf
-	grub2-mkrescue --xorriso=/usr/local/src/xorriso-1.4.6/xorriso/xorriso \
+	grub2-mkrescue --xorriso=/usr/local/src/xorriso-1.4.8/xorriso/xorriso \
 	               -o $@ src/iso
 
 # kernel

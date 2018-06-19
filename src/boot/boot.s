@@ -1,7 +1,7 @@
 ;; global
 global start
 ;; external
-extern main
+extern kmain
 
 ;;; Definitions
 ;; Header of boot loader
@@ -47,7 +47,7 @@ bits 32
 	sti			; enable interruption
 	push eax		; magic
 	push ebx		; mb_info
-	call main
+	call kmain
 	cli
 .hlt:
 	hlt

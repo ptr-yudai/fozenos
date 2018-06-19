@@ -8,6 +8,9 @@ phys = 0x00100000;
 
 SECTIONS
 {
+	. = 0x00100000;
+	_KERNEL_TOP = .;
+
 	/*
 	 * text
 	 */
@@ -45,4 +48,5 @@ SECTIONS
 		*(.note.gnu.build-id)
 	}
 	
+	_KERNEL_BOTTOM = .;
 }
